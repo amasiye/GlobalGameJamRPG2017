@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Character\Character.cs" />
     <Compile Include="Assets\Scripts\Character\CommandList.cs" />
     <Compile Include="Assets\Scripts\Character\Enemy\Enemy.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\Game Controller\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Game Controller\Tags.cs" />
     <Compile Include="Assets\Scripts\Game Controller\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\Scripts\UI\HitText.cs" />
     <Compile Include="Assets\Scripts\UI\MessageManager.cs" />
   </ItemGroup>

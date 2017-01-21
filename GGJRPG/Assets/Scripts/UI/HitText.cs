@@ -7,15 +7,25 @@ public class HitText : MonoBehaviour
     public float Lifetime;
     public float Height;
 
+    public Color IncreaseColor;
+    public Color DecreaseColor;
+
+    public int Value { get; set; }
+
     private float m_fRemaining;
-    private Image m_CImage;
+    private Text m_CText;
     private RectTransform m_CTransform;
 
     private void Start()
     {
         m_fRemaining = Lifetime;
-        m_CImage = GetComponent<Image>();
+        m_CText = GetComponent<Text>();
         m_CTransform = GetComponent<RectTransform>();
+        if (m_CText != null)
+        {
+            m_CText.color = (Value > 0) ? IncreaseColor : DecreaseColor;
+            m_CText.text = ((Value > 0) ? "+" : "") + Value.ToString();
+        }
     }
 
     private void Update()
@@ -27,9 +37,9 @@ public class HitText : MonoBehaviour
         }
         else
         {
-            if (m_CImage != null)
+            if (m_CText != null)
             {
-                m_CImage.color = new Color(m_CImage.color.r, m_CImage.color.g, m_CImage.color.b, m_fRemaining / Lifetime);
+                m_CText.color = new Color(m_CText.color.r, m_CText.color.g, m_CText.color.b, m_fRemaining / Lifetime);
             }
             if (m_CTransform != null)
             {

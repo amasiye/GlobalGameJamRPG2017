@@ -11,11 +11,27 @@ public class Character : MonoBehaviour
     protected int hp;
     protected int atk;
     protected int def;
-    public int HP { get { return hp; } set { hp = Mathf.Clamp(value, 0, maxHP); } }
+    public int HP
+    {
+        get
+        {
+            return hp;
+        }
+
+        set
+        {
+            hp = Mathf.Clamp(value, 0, maxHP);
+            if (healthDisplay != null)
+            {
+                healthDisplay.SetHP(hp, true);
+            }
+        }
+    }
+
     public int ATK { get { return atk; } set { atk = Mathf.Clamp(value, 0, maxATK); } }
     public int DEF { get { return def; } set { def = Mathf.Clamp(value, 0, maxDEF); } }
 
-    public Text hpText;
+    public HealthBar healthDisplay;
 
     public enum Element { Earth, Ice, Fire, Lightning }
 
@@ -33,13 +49,15 @@ public class Character : MonoBehaviour
             gm = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<GameManager>();
     }
 
-    void Update()
+    void Start()
     {
-        if(hpText)
+        hp = maxHP;
+        if (healthDisplay != null)
         {
-            hpText.text = hp.ToString();
+            healthDisplay.BarMax = maxHP;
+            healthDisplay.SetHP(hp, false);
         }
-    } // end Update()
+    }
 
     public void Attack(Character target, Command atk)
     {
