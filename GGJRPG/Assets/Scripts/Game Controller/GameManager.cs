@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject enemy;
-    
+
+    public Queue<GameObject> turnQueue;
+
     void Start()
     {
 
