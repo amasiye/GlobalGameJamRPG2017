@@ -5,8 +5,6 @@ public class Player : Character
 {
     public new void Attack(Character target, Command atk)
     {
-        Debug.Log(bindAtk);
-
         switch(bindAtk)
         {
             case Element.Fire:
@@ -31,10 +29,12 @@ public class Player : Character
                 break;
         }
         target.HP -= atk.amount;
+        gm.AdvanceTurn();
     } // end Attack()
 
     public new void Magic(Character target, Command atk)
     {
         target.HP -= 5;
+        gm.AdvanceTurn();
     } // end Magic()
 }
