@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     public int Ice { get { return ice; } set { ice = Mathf.Clamp(value, 0, 100); } }
     public int Earth { get { return earth; } set { earth = Mathf.Clamp(value, 0, 100); } }
 
+    public Character[] characters;
+    [SerializeField]
+    private int turnIndex;
+    public int TurnIndex { get { return turnIndex; } set { turnIndex = (value > characters.Length - 1) ? 0 : value; } }
+
     void Awake()
     {
         if(!player)
@@ -40,11 +45,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // Player Commands
+        // Attack
         if(Input.GetButtonDown(ButtonManager.attack))
         {
             player.Attack(enemy, CommandList.slash);
         }
 
+        // Magic
         if(Input.GetButtonDown(ButtonManager.magic))
         {
             Debug.Log("Magic");

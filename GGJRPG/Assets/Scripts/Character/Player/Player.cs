@@ -5,7 +5,31 @@ public class Player : Character
 {
     public new void Attack(Character target, Command atk)
     {
-        Debug.Log(atk.name);
+        Debug.Log(bindAtk);
+
+        switch(bindAtk)
+        {
+            case Element.Fire:
+                // Deplete the Mana pool
+                gm.Fire -= atk.cost;
+                // Adjust the multiplier
+                break;
+            case Element.Ice:
+                // Deplete the Mana pool
+                gm.Ice -= atk.cost;
+                // Adjust the multiplier
+                break;
+            case Element.Lightning:
+                // Deplete the Mana pool
+                gm.Lightning -= atk.cost;
+                // Adjust the multiplier
+                break;
+            case Element.Earth:
+                // Deplete the Mana pool
+                gm.Earth -= atk.cost;
+                // Adjust the multiplier
+                break;
+        }
         target.HP -= atk.amount;
     } // end Attack()
 

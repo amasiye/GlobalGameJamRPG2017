@@ -17,10 +17,21 @@ public class UIManager : MonoBehaviour
         if(!gm)
             gm = gameObject.GetComponent<GameManager>();
 
+
     }
 
     void OnGUI()
     {
+        if(fireAmount)
+            fireAmount.text = gm.Fire.ToString();
 
+        if(iceAmount)
+            iceAmount.text = gm.Ice.ToString();
+
+        if(lightningAmount)
+            lightningAmount.text = gm.Lightning.ToString();
+
+        if(earthAmount)
+            earthAmount.text = gm.Earth.ToString();
     }
 }

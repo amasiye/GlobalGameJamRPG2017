@@ -15,13 +15,25 @@ public class Character : MonoBehaviour
     public int ATK { get { return atk; } set { atk = Mathf.Clamp(value, 0, maxATK); } }
     public int DEF { get { return def; } set { def = Mathf.Clamp(value, 0, maxDEF); } }
 
-    public string[] messages = { "Slash", "Fire", "Cure" };
-
     public Text hpText;
 
     public enum Element { Earth, Ice, Fire, Lightning }
 
-    public void Update()
+    public Element bindHP = Element.Ice;
+    public Element bindAtk = Element.Fire;
+    public Element bindDef = Element.Earth;
+    public Element bindMgk = Element.Lightning;
+
+    [SerializeField]
+    protected GameManager gm;
+
+    void Awake()
+    {
+        if(!gm)
+            gm = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<GameManager>();
+    }
+
+    void Update()
     {
         if(hpText)
         {
