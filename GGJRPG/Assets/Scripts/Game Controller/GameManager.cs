@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     public int playerHP = 1000;
     public int enemyHP = 10000;
 
-    public static Queue<GameObject> turnQueue;
-
     [SerializeField]
     private int fire = 50;
     [SerializeField]
@@ -47,15 +45,43 @@ public class GameManager : MonoBehaviour
     {
         // Player Commands
         // Attack
-        if(Input.GetButtonDown(ButtonManager.attack))
+        switch(turnIndex)
         {
-            player.Attack(enemy, CommandList.slash);
-        }
+            case 0:
+                if(Input.GetButtonDown(ButtonManager.attack))
+                {
+                    player.Attack(enemy, CommandList.slash);
+                }
 
-        // Magic
-        if(Input.GetButtonDown(ButtonManager.magic))
-        {
-            Debug.Log("Magic");
+                // Magic
+                if(Input.GetButtonDown(ButtonManager.magic))
+                {
+                    Debug.Log("Magic");
+                }
+                break;
+
+            default:
+                int commandValue = Random.Range(1, 100);
+                Enemy activeEnemy = characters[turnIndex] as Enemy;
+
+                if(commandValue < 50)
+                {
+                    activeEnemy.Attack(player, CommandList.wave);
+                }
+                else if(commandValue < 90)
+                {
+                    activeEnemy.Attack(player, CommandList.bigWave);
+                }
+                else
+                {
+                    activeEnemy.Attack(player, CommandList.tsunami);
+                }
+                break;
         }
     } // end Update()
-}
+
+    public void AdvanceTurn()
+    {
+        TurnIndex++;
+    } // end AdvanceTurn()
+} // end GameManager()
