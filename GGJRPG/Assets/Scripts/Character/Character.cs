@@ -11,21 +11,19 @@ public class Character : MonoBehaviour
 
     public enum Element { Earth, Ice, Fire, Lightning }
 
-    public void Start()
+    public void Update()
     {
         if(hpText)
         {
             hpText.text = hp.ToString();
         }
-    } // end Start()
+    } // end Update()
 
     public void Attack(Character target)
     {
-
-    }
+    } // end Attack()
 
     public void Magic(Character target)
     {
-
-    }
+    } // end Magic()
 }

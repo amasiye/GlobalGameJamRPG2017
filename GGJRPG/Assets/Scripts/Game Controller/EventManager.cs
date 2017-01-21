@@ -10,6 +10,12 @@ public class EventManager : MonoBehaviour
     public static event GameStateChange OnGamePause;
     public static event GameStateChange OnGameOver;
 
+    public delegate void OptionChange();
+    public static event OptionChange OnSoundOn;
+    public static event OptionChange OnSoundOff;
+    public static event OptionChange OnMusicOn;
+    public static event OptionChange OnMusicOff;
+
     public delegate void TurnStateChange();
 
     public enum EventMessage {
