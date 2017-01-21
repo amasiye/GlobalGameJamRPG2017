@@ -1,11 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
+
 public class Character : MonoBehaviour
 {
-    public float hp;
-    public float atk;
-    public float def;
+    public int maxHP = 9999;
+    public int maxATK = 99;
+    public int maxDEF = 99;
+    protected int hp;
+    protected int atk;
+    protected int def;
+    public int HP { get { return hp; } set { hp = Mathf.Clamp(value, 0, maxHP); } }
+    public int ATK { get { return atk; } set { atk = Mathf.Clamp(value, 0, maxATK); } }
+    public int DEF { get { return def; } set { def = Mathf.Clamp(value, 0, maxDEF); } }
+
+    public string[] messages = { "Slash", "Fire", "Cure" };
 
     public Text hpText;
 
@@ -19,11 +29,11 @@ public class Character : MonoBehaviour
         }
     } // end Update()
 
-    public void Attack(Character target)
+    public void Attack(Character target, Command atk)
     {
     } // end Attack()
 
-    public void Magic(Character target)
+    public void Magic(Character target, Command spell)
     {
     } // end Magic()
 }

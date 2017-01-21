@@ -58,6 +58,26 @@ public class EventManager : MonoBehaviour
                 if(OnGameOver != null)
                     OnGameOver();
                 break;
+
+            case EventMessage.SoundOn:
+                if(OnSoundOn != null)
+                    OnSoundOn();
+                break;
+
+            case EventMessage.SoundOff:
+                if(OnSoundOff != null)
+                    OnSoundOff();
+                break;
+
+            case EventMessage.MusicOn:
+                if(OnMusicOn != null)
+                    OnMusicOn();
+                break;
+
+            case EventMessage.MusicOff:
+                if(OnMusicOff != null)
+                    OnMusicOff();
+                break;
         }
     } // end Broadcast()
 }

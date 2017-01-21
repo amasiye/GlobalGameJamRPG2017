@@ -4,29 +4,50 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public Character player;
-    public Character enemy;
+    public Player player;
+    public Enemy enemy;
 
-    public float playerHP = 1000f;
-    public float enemyHP = 10000f;
+    public int playerHP = 1000;
+    public int enemyHP = 10000;
 
     public static Queue<GameObject> turnQueue;
+
+    [SerializeField]
+    private int fire = 50;
+    [SerializeField]
+    private int lightning = 50;
+    [SerializeField]
+    private int ice = 50;
+    [SerializeField]
+    private int earth = 50;
+
+    public int Fire { get { return fire; } set { fire = Mathf.Clamp(value, 0, 100); } }
+    public int Lightning { get { return lightning; } set { lightning = Mathf.Clamp(value, 0, 100); } }
+    public int Ice { get { return ice; } set { ice = Mathf.Clamp(value, 0, 100); } }
+    public int Earth { get { return earth; } set { earth = Mathf.Clamp(value, 0, 100); } }
 
     void Awake()
     {
         if(!player)
-            player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Character>();
+            player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Player>();
 
         if(!enemy)
-            enemy = GameObject.FindGameObjectWithTag(Tags.enemy).GetComponent<Character>();
+            enemy = GameObject.FindGameObjectWithTag(Tags.enemy).GetComponent<Enemy>();
 
-        player.hp = playerHP;
-        enemy.hp = enemyHP;
+        player.HP = playerHP;
+        enemy.HP = enemyHP;
     } // end Start()
 
     void Update()
     {
-        Debug.Log(player.hp);
+        if(Input.GetButtonDown(ButtonManager.attack))
+        {
+            player.Attack(enemy, CommandList.slash);
+        }
 
+        if(Input.GetButtonDown(ButtonManager.magic))
+        {
+            Debug.Log("Magic");
+        }
     } // end Update()
 }
