@@ -20,10 +20,10 @@ public struct Command
 public class CommandList
 {
     public static Command slash = new Command("Slash", 10);
-    public static Command fire = new Command("Fire", 50, 5);
-    public static Command ice = new Command("Ice", 50, 5);
-    public static Command lightning = new Command("Lightning", 50, 5);
-    public static Command earth = new Command("Earth", 50, 5);
+    public static Command fire = new Command("Inferno", 50, 5);
+    public static Command ice = new Command("Blizaro", 50, 5);
+    public static Command lightning = new Command("Shockeroo", 50, 5);
+    public static Command earth = new Command("Rockeroo", 50, 5);
     public static Command wave = new Command("Wave", 15, 3);
     public static Command bigWave = new Command("Big Wave", 30, 6);
     public static Command tsunami = new Command("Tsunami", 50, 10);
