@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
     public ElementUI LightningUI;
     public ElementUI EarthUI;
 
+    public Canvas results;
+    public Text winText;
+    public Text loseText;
+
     [SerializeField]
     private GameManager gm;
 
@@ -40,6 +44,15 @@ public class UIManager : MonoBehaviour
     {
         if(!gm)
             gm = gameObject.GetComponent<GameManager>();
+
+        if(winText)
+            winText.enabled = false;
+
+        if(loseText)
+            loseText.enabled = false;
+
+        if(results)
+            results.enabled = false;
     }
 
     void OnGUI()
@@ -49,4 +62,15 @@ public class UIManager : MonoBehaviour
         LightningUI.UpdateUI(gm.Lightning);
         EarthUI.UpdateUI(gm.Earth);
     }
+
+    public void ShowResults(bool win = false)
+    {
+        if(results)
+            results.enabled = true;
+
+        if(win)
+            winText.enabled = true;
+        else
+            loseText.enabled = true;
+    } // end ShowResults()
 }

@@ -42,6 +42,9 @@ public class Character : MonoBehaviour
     public Element bindDef = Element.Earth;
     public Element bindMgk = Element.Lightning;
 
+    public AudioClip attackSound;
+    public AudioSource source;
+
     [SerializeField]
     protected GameManager gm;
 
@@ -63,28 +66,59 @@ public class Character : MonoBehaviour
 
     public void Attack(Character target, Command atk)
     {
-        switch(bindAtk)
+        if(attackSound)
         {
-            case Element.Fire:
-                gm.Fire -= atk.cost;
-                // Adjust the multiplier
-                break;
-            case Element.Ice:
-                gm.Ice -= atk.cost;
-                // Adjust the multiplier
-                break;
-            case Element.Lightning:
-                gm.Lightning -= atk.cost;
-                // Adjust the multiplier
-                break;
-            case Element.Earth:
-                gm.Earth -= atk.cost;
-                // Adjust the multiplier
-                break;
+            source.clip = attackSound;
+
+            if(!source.isPlaying)
+            {
+                source.Play();
+            }
         }
+        UpdateManaPool(bindAtk, atk);
     } // end Attack()
 
     public void Magic(Character target, Command spell)
     {
+        UpdateManaPool(bindAtk, spell);
     } // end Magic()
+
+    public void UpdateManaPool(Element elm, Command cmd)
+    {
+
+        switch(elm)
+        {
+            case Element.Fire:
+                gm.Fire -= cmd.cost;
+                gm.Ice += cmd.cost;
+                // Adjust the multiplier
+                break;
+            case Element.Ice:
+                gm.Ice -= cmd.cost;
+                gm.Fire += cmd.cost;
+                // Adjust the multiplier
+                break;
+            case Element.Lightning:
+                gm.Lightning -= cmd.cost;
+                gm.Earth += cmd.cost;
+                // Adjust the multiplier
+                break;
+            case Element.Earth:
+                gm.Earth -= cmd.cost;
+                gm.Lightning += cmd.cost;
+                // Adjust the multiplier
+                break;
+        }
+    } // end UpdateManaPool()
+
+    public void Damage(int amount)
+    {
+        HP -= amount;
+
+        if(HP < 1)
+        {
+            gm.ChangeGameState(GameManager.GameState.GameOver);
+        }
+        gm.AdvanceTurn();
+    } // end Damage()
 }
