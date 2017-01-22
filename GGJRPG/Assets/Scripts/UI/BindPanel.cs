@@ -41,8 +41,8 @@ public class BindPanel : MonoBehaviour
         {
             return;
         }
-        float l_fXAxis = Input.GetAxis("x axis");
-        float l_fYAxis = Input.GetAxis("y axis");
+        float l_fXAxis = Input.GetAxis("Horizontal");
+        float l_fYAxis = Input.GetAxis("Vertical");
         if ((l_fXAxis > 0.0f) && (m_fLastXAxis <= 0.0f) && (m_nColumnIndex < Columns.Length - 1))
         {
             Columns[m_nColumnIndex].Icons[m_nRowIndex].SetHighlighted(false);
@@ -63,7 +63,7 @@ public class BindPanel : MonoBehaviour
             Columns[m_nColumnIndex].Icons[m_nRowIndex].SetHighlighted(false);
             m_nRowIndex++;
         }
-        else if (Input.GetButtonDown("joystick button 16"))
+        else if (Input.GetButtonDown(ButtonManager.xboxA))
         {
             for (int i = 0; i < Columns[m_nColumnIndex].Icons.Length; i++)
             {
@@ -71,7 +71,7 @@ public class BindPanel : MonoBehaviour
             }
             Columns[m_nColumnIndex].Icons[m_nRowIndex].SetSelected(true);
         }
-        else if (Input.GetButtonDown("joystick button 9"))
+        else if (Input.GetButtonDown(ButtonManager.xboxStart))
         {
             Confirm();
         }
