@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[AddComponentMenu("Game Conroller/Game Manager")]
+[AddComponentMenu("Game Controller/Game Manager")]
 public class GameManager : MonoBehaviour
 {
     public Player player;
@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
         if(!enemy)
             enemy = GameObject.FindGameObjectWithTag(Tags.enemy).GetComponent<Enemy>();
 
+        Fire = Random.Range(25, 75);
+        Ice = 100 - Fire;
+        Lightning = Random.Range(25, 75);
+        Earth = 100 - Lightning;
+
         player.HP = playerHP;
         enemy.HP = enemyHP;
     } // end Start()
@@ -45,7 +50,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Player Commands
-        // Attack
         switch(turnIndex)
         {
             case 0:
@@ -57,7 +61,22 @@ public class GameManager : MonoBehaviour
                 // Magic
                 if(Input.GetButtonDown(ButtonManager.magic))
                 {
-                    Debug.Log("Magic");
+                    Command cmd = CommandList.fire;
+
+                    switch(player.bindMgk)
+                    {
+                        case Character.Element.Ice:
+                            cmd = CommandList.ice;
+                            break;
+                        case Character.Element.Lightning:
+                            cmd = CommandList.lightning;
+                            break;
+                        case Character.Element.Earth:
+                            cmd = CommandList.earth;
+                            break;
+                    }
+
+                    player.Magic(enemy, cmd);
                 }
                 break;
 

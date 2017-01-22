@@ -8,6 +8,9 @@ public class TitleManager : MonoBehaviour
     public AudioClip mainTheme;
     public AudioClip sfxAccept;
 
+    public AudioSource bgmChannel;
+    public AudioSource sfxChannel;
+
     public float fadeTime = 0.1f;
     private float nextTime = 0f;
     public Image bgBlackImage;
@@ -59,7 +62,11 @@ public class TitleManager : MonoBehaviour
 
         if(Input.GetButtonDown(ButtonManager.xboxStart))
         {
-            Debug.Log("Hello");
+            if(sfxAccept && sfxChannel)
+            {
+                sfxChannel.clip = sfxAccept;
+                sfxChannel.Play();
+            }
             if(promptBlinker.blink)
             {
                 promptBlinker.Halt();

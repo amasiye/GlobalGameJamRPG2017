@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Character/Enemy")]
 public class Enemy : Character
 {
     public new void Attack(Character target, Command atk)

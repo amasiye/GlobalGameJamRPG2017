@@ -1,40 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Character/Player")]
 public class Player : Character
 {
     public new void Attack(Character target, Command atk)
     {
-        switch(bindAtk)
-        {
-            case Element.Fire:
-                // Deplete the Mana pool
-                gm.Fire -= atk.cost;
-                // Adjust the multiplier
-                break;
-            case Element.Ice:
-                // Deplete the Mana pool
-                gm.Ice -= atk.cost;
-                // Adjust the multiplier
-                break;
-            case Element.Lightning:
-                // Deplete the Mana pool
-                gm.Lightning -= atk.cost;
-                // Adjust the multiplier
-                break;
-            case Element.Earth:
-                // Deplete the Mana pool
-                gm.Earth -= atk.cost;
-                // Adjust the multiplier
-                break;
-        }
+        base.Attack(target, atk);
+
         target.HP -= atk.amount;
         gm.AdvanceTurn();
     } // end Attack()
 
-    public new void Magic(Character target, Command atk)
+    public new void Magic(Character target, Command spell)
     {
-        target.HP -= 5;
+        base.Magic(target, spell);
+
+        target.HP -= spell.amount;
         gm.AdvanceTurn();
     } // end Magic()
 }
