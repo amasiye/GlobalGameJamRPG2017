@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Game Controller/Event Manager")]
 public class EventManager : MonoBehaviour
 {
     public delegate void GameStateChange();

@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[AddComponentMenu("Game Controller/UI Manager")]
+
 [System.Serializable]
 public struct ElementUI
 {

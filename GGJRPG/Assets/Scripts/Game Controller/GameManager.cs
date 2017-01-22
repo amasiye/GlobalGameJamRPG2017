@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[AddComponentMenu("Game Conroller/Game Manager")]
 public class GameManager : MonoBehaviour
 {
     public Player player;
